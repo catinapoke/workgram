@@ -1,116 +1,297 @@
-# Feature Specification: [FEATURE NAME]
+# Спецификация: [FEATURE_NAME]
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
-**Input**: User description: "$ARGUMENTS"
+**Версия:** [X.Y.Z]  
+**Дата:** [DATE]  
+**Статус:** [Draft | Review | Approved | Implemented]  
+**Связанный план:** [Ссылка на plan-template.md]
 
-## User Scenarios & Testing *(mandatory)*
+## 1. Обзор
 
-<!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
--->
+### 1.1 Цель
 
-### User Story 1 - [Brief Title] (Priority: P1)
+[Четкое описание того, что должна делать функция]
 
-[Describe this user journey in plain language]
+### 1.2 Scope (Область применения)
 
-**Why this priority**: [Explain the value and why it has this priority level]
+**В области:**
+- [Что включено]
+- [Что включено]
 
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
+**Вне области:**
+- [Что не включено]
+- [Что не включено]
 
-**Acceptance Scenarios**:
+### 1.3 Пользователи
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
+- **Целевая аудитория:** [Описание]
+- **Примеры use cases:** [Сценарии использования]
 
----
+## 2. Функциональные требования
 
-### User Story 2 - [Brief Title] (Priority: P2)
+### FR-1: [Название требования]
 
-[Describe this user journey in plain language]
+**Приоритет:** Critical | High | Medium | Low
 
-**Why this priority**: [Explain the value and why it has this priority level]
+**Описание:**  
+[Подробное описание требования]
 
-**Independent Test**: [Describe how this can be tested independently]
+**Acceptance Criteria:**
+- [ ] Критерий 1
+- [ ] Критерий 2
 
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+**Соответствие конституции:**
+- Принцип 3 (UX): [Как требование обеспечивает UX]
 
 ---
 
-### User Story 3 - [Brief Title] (Priority: P3)
+### FR-2: [Название требования]
 
-[Describe this user journey in plain language]
+[Повторить структуру]
 
-**Why this priority**: [Explain the value and why it has this priority level]
+## 3. Нефункциональные требования
 
-**Independent Test**: [Describe how this can be tested independently]
+### NFR-1: Производительность
 
-**Acceptance Scenarios**:
+**Метрики (согласно Принципу 4):**
+- Время отклика: [< X ms]
+- Throughput: [X операций/сек]
+- Потребление памяти: [< X MB]
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+**Метод проверки:**
+```rust
+// Пример benchmark теста
+#[bench]
+fn bench_feature_name(b: &mut Bencher) {
+    // ...
+}
+```
+
+### NFR-2: Надежность
+
+- **Доступность:** [X%]
+- **Обработка ошибок:** [Стратегия graceful degradation]
+- **Offline режим:** [Поддержка/Не поддержка]
+
+### NFR-3: Безопасность
+
+- **Аутентификация:** [Требования]
+- **Авторизация:** [Требования]
+- **Шифрование данных:** [Требования]
+
+### NFR-4: Поддерживаемость
+
+**Соответствие Принципу 1:**
+- Покрытие документацией: [X%]
+- Сложность кода: Cyclomatic complexity < [X]
+- Модульность: [Описание разделения на модули]
+
+### NFR-5: Тестируемость
+
+**Соответствие Принципу 2:**
+- Unit-тесты: [X% coverage]
+- Integration-тесты: [Список сценариев]
+- E2E-тесты: [Список критических путей]
+
+## 4. Дизайн интерфейса
+
+### 4.1 Wireframes/Mockups
+
+[Ссылки на дизайн-макеты или встроенные изображения]
+
+### 4.2 UI Components
+
+| Компонент | Библиотека | Описание |
+|-----------|------------|----------|
+| [Button] | [shadcn/ui] | [Кнопка действия] |
+
+### 4.3 UX Flow
+
+```
+[Начальное состояние]
+    ↓
+[Действие пользователя]
+    ↓
+[Промежуточное состояние: Loading indicator]
+    ↓
+[Конечное состояние: Success/Error]
+```
+
+**Время отклика (Принцип 3):**
+- Клик → Feedback: < 100ms
+- Загрузка данных: 200-500ms (с индикатором)
+
+### 4.4 Keyboard Shortcuts
+
+| Комбинация | Действие |
+|------------|----------|
+| Ctrl+N | [Действие] |
+
+## 5. Техническая архитектура
+
+### 5.1 Rust Backend (Tauri Commands)
+
+```rust
+#[tauri::command]
+async fn feature_command(param: Type) -> Result<Response, Error> {
+    // Реализация согласно Принципу 1 (качество кода)
+    // Документация, обработка ошибок, тестируемость
+}
+```
+
+### 5.2 Frontend Components (React/TypeScript)
+
+```typescript
+interface FeatureProps {
+    // Типизированные пропсы (Принцип 1)
+}
+
+const Feature: React.FC<FeatureProps> = (props) => {
+    // Компонент с обработкой состояний (Принцип 3: UX)
+};
+```
+
+### 5.3 Модель данных
+
+**SQLite Schema:**
+```sql
+CREATE TABLE feature_table (
+    id INTEGER PRIMARY KEY,
+    -- Поля с индексами для производительности (Принцип 4)
+);
+```
+
+**Rust Structs:**
+```rust
+#[derive(Debug, Serialize, Deserialize)]
+struct FeatureData {
+    // Документированная структура
+}
+```
+
+### 5.4 API взаимодействия
+
+**Telegram API calls:**
+- Метод: [telegram_method]
+- Параметры: [params]
+- Обработка ошибок: [retry strategy]
+
+## 6. План тестирования
+
+### 6.1 Unit Tests
+
+**Rust:**
+```rust
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn test_feature_logic() {
+        // Минимум 70% coverage критической логики
+    }
+}
+```
+
+**TypeScript:**
+```typescript
+describe('Feature', () => {
+    it('should behave as expected', () => {
+        // Тестирование компонентов
+    });
+});
+```
+
+### 6.2 Integration Tests
+
+- [ ] Тест взаимодействия Tauri command с frontend
+- [ ] Тест работы с БД (SQLite)
+- [ ] Тест интеграции с Telegram API
+
+### 6.3 E2E Tests
+
+**Критические сценарии:**
+1. [Сценарий 1: Шаги]
+2. [Сценарий 2: Шаги]
+
+### 6.4 Performance Tests
+
+**Benchmarks (Принцип 4):**
+```bash
+cargo bench --bench feature_bench
+```
+
+**Метрики:**
+- Baseline: [X ms]
+- Target: [Y ms]
+- Acceptable: [Z ms]
+
+## 7. Миграция и обратная совместимость
+
+### 7.1 Database Migration
+
+```sql
+-- Migration script v[X]
+ALTER TABLE ... ;
+```
+
+### 7.2 Конфигурация
+
+- Новые настройки: [список]
+- Значения по умолчанию: [значения]
+- Миграция старых настроек: [стратегия]
+
+## 8. Rollout план
+
+### Фаза 1: Alpha (Internal)
+- Дата: [DATE]
+- Аудитория: Разработчики
+- Цель: Выявление критических багов
+
+### Фаза 2: Beta
+- Дата: [DATE]
+- Аудитория: [X% пользователей]
+- Метрики мониторинга: [список]
+
+### Фаза 3: General Availability
+- Дата: [DATE]
+- Критерии выхода:
+  - [ ] 0 critical bugs
+  - [ ] Performance metrics met (Принцип 4)
+  - [ ] Code review approved (Принцип 1)
+  - [ ] Test coverage > 70% (Принцип 2)
+
+## 9. Документация
+
+- [ ] User documentation обновлена
+- [ ] API documentation (rustdoc) обновлена
+- [ ] README обновлен (если требуется)
+- [ ] CHANGELOG обновлен
+
+## 10. Мониторинг и метрики
+
+**Post-release метрики:**
+- Feature adoption rate: [target %]
+- Error rate: [< X%]
+- Performance в продакшене: [соответствие NFR]
+- User feedback: [метод сбора]
 
 ---
 
-[Add more user stories as needed, each with an assigned priority]
+## Приложения
 
-### Edge Cases
+### A. Глоссарий
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
+- **Термин 1:** [Определение]
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+### B. Ссылки
 
-## Requirements *(mandatory)*
+- [Ссылка на внешний ресурс]
+- [Документация Telegram API]
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
--->
+---
 
-### Functional Requirements
+**Одобрения:**
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
-
-*Example of marking unclear requirements:*
-
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Key Entities *(include if feature involves data)*
-
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
-
-## Success Criteria *(mandatory)*
-
-<!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
--->
-
-### Measurable Outcomes
-
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
-
+| Роль | Имя | Дата | Подпись |
+|------|-----|------|---------|
+| Author | [Name] | [Date] | ✓ |
+| Tech Reviewer | [Name] | [Date] | |
+| Product Owner | [Name] | [Date] | |

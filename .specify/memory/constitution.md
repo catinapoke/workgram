@@ -1,50 +1,171 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+Version: 1.0.0 (Initial Constitution)
+Modified Principles: N/A (initial creation)
+Added Sections:
+  - Principle 1: Code Quality and Maintainability
+  - Principle 2: Testing Standards and Coverage
+  - Principle 3: User Experience Consistency
+  - Principle 4: Performance Requirements
+Removed Sections: N/A
+Templates Status:
+  ✅ plan-template.md - created
+  ✅ spec-template.md - created
+  ✅ tasks-template.md - created
+  ✅ commands/constitution.md - created
+  ✅ commands/plan.md - created
+  ✅ commands/spec.md - created
+  ✅ commands/tasks.md - created
+Follow-up TODOs:
+  - Establish CI/CD pipeline for automated testing
+  - Define performance benchmarking tools
+  - Create performance benchmarks baseline
+  - Set up clippy and rustfmt in CI
+  - Configure E2E testing framework
+-->
 
-## Core Principles
+# Конституция проекта Omegram
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+**Проект:** Omegram  
+**Версия конституции:** 1.0.0  
+**Дата ратификации:** 2025-10-19  
+**Последнее изменение:** 2025-10-19  
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+## Обзор
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+Omegram — это Telegram GUI клиент, написанный на Rust с использованием фреймворка Tauri 
+для кроссплатформенного десктопного интерфейса. Данная конституция устанавливает 
+фундаментальные принципы разработки, обеспечивающие высокое качество кода, надежность, 
+производительность и превосходный пользовательский опыт.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+## Принципы
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Принцип 1: Качество кода и поддерживаемость
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+**Code Quality and Maintainability**
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+Код ДОЛЖЕН быть читаемым, понятным и легко поддерживаемым. Все разработчики обязаны:
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+- Следовать официальным руководствам по стилю Rust (rustfmt) и TypeScript/React
+- Использовать `clippy` для статического анализа Rust-кода с уровнем строгости "warn"
+- Проводить code review для всех изменений перед слиянием в основную ветку
+- Документировать публичные API с использованием doc-комментариев (`///` для Rust, 
+  JSDoc для TypeScript)
+- Избегать дублирования кода; применять принцип DRY (Don't Repeat Yourself)
+- Поддерживать модульную архитектуру с четким разделением ответственности
+- Использовать осмысленные имена переменных, функций и типов
+- Ограничивать сложность функций (максимум 50 строк, не более 4 уровней вложенности)
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**Обоснование:** Высокое качество кода снижает технический долг, упрощает онбординг новых 
+разработчиков и уменьшает количество дефектов в продакшене. Поддерживаемый код позволяет 
+быстрее внедрять новые функции и адаптироваться к изменяющимся требованиям.
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+### Принцип 2: Стандарты тестирования и покрытие
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+**Testing Standards and Coverage**
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Тестирование является неотъемлемой частью процесса разработки. Требования:
+
+- Минимальное покрытие unit-тестами: 70% для критической бизнес-логики
+- Все публичные функции в Rust ДОЛЖНЫ иметь хотя бы один unit-тест
+- Интеграционные тесты ОБЯЗАТЕЛЬНЫ для команд Tauri и взаимодействия с Telegram API
+- Регрессионные тесты создаются для каждого исправленного бага
+- Тесты выполняются автоматически в CI/CD пайплайне перед каждым мержем
+- E2E-тесты покрывают критические пользовательские сценарии (логин, отправка сообщений)
+- Mock-объекты используются для изоляции внешних зависимостей (API, БД)
+- Тесты ДОЛЖНЫ быть быстрыми (unit < 100ms, integration < 1s)
+
+**Обоснование:** Комплексное тестирование обеспечивает стабильность приложения, снижает 
+риск регрессий и дает уверенность при рефакторинге. Автоматизированные тесты служат 
+живой документацией и ускоряют обнаружение дефектов.
+
+### Принцип 3: Согласованность пользовательского опыта
+
+**User Experience Consistency**
+
+Пользовательский интерфейс ДОЛЖЕН быть интуитивным, последовательным и доступным:
+
+- Следовать единой дизайн-системе с переиспользуемыми UI-компонентами
+- Обеспечивать время отклика интерфейса < 100ms для любых действий пользователя
+- Показывать индикаторы загрузки для операций длительностью > 200ms
+- Использовать оптимистичные UI-обновления где возможно
+- Обрабатывать ошибки gracefully с понятными сообщениями для пользователя
+- Поддерживать keyboard shortcuts для основных действий
+- Сохранять состояние между сессиями (позиция в чате, настройки)
+- Обеспечивать плавные анимации и transitions (60 FPS)
+- Тестировать UX на различных разрешениях экранов
+- Локализовать интерфейс (минимум EN/RU)
+
+**Обоснование:** Последовательный UX снижает когнитивную нагрузку, повышает 
+продуктивность пользователей и удовлетворенность продуктом. Плавный и отзывчивый 
+интерфейс формирует положительное восприятие качества приложения.
+
+### Принцип 4: Требования к производительности
+
+**Performance Requirements**
+
+Производительность является критическим фактором успеха приложения:
+
+**Метрики запуска:**
+- Холодный старт приложения < 3 секунд
+- Время до интерактивности (TTI) < 2 секунд
+- Потребление памяти в idle < 150 MB
+
+**Метрики runtime:**
+- Загрузка списка чатов < 500ms (до 1000 чатов)
+- Отрисовка истории сообщений < 300ms (50 сообщений)
+- Scroll performance: постоянные 60 FPS, никаких падений
+- Отправка текстового сообщения: оптимистичное отображение < 50ms
+- Бинарный размер релизной сборки < 50 MB
+
+**Оптимизации:**
+- Использовать виртуализацию для длинных списков (чаты, сообщения)
+- Применять lazy loading для медиа-контента
+- Кэшировать данные локально в SQLite для offline-доступа
+- Использовать incremental loading с пагинацией
+- Профилировать критические пути кода регулярно
+- Применять async/await для неблокирующих операций
+- Оптимизировать Rust-код в релизной сборке с LTO и opt-level=3
+
+**Обоснование:** Низкая производительность — одна из известных проблем проекта. 
+Установление четких метрик и требований к производительности критически важно для 
+конкурентоспособности приложения и удержания пользователей.
+
+## Управление
+
+### Процедура внесения изменений
+
+Изменения в конституцию требуют:
+
+1. Обоснование необходимости изменения с примерами
+2. Создание pull request с предлагаемыми изменениями
+3. Обсуждение командой (минимум 3 рабочих дня)
+4. Одобрение мейнтейнеров проекта (минимум 2/3 голосов)
+5. Обновление версии согласно семантическому версионированию
+
+### Семантическое версионирование конституции
+
+- **MAJOR** (X.0.0): Удаление принципов, несовместимые изменения в управлении
+- **MINOR** (x.Y.0): Добавление новых принципов, существенное расширение существующих
+- **PATCH** (x.y.Z): Уточнения формулировок, исправление опечаток, улучшение читаемости
+
+### Контроль соблюдения
+
+- Code review проверяет соответствие принципам качества кода
+- CI/CD пайплайн автоматически проверяет требования к тестированию и производительности
+- Ежемесячные ретроспективы для оценки соблюдения принципов
+- Performance benchmarks запускаются автоматически при каждом PR
+- UX-аудиты проводятся перед каждым релизом
+
+## Исключения
+
+В исключительных случаях (критические баги в продакшене, security hotfixes) допускается 
+временное отклонение от принципов с обязательным:
+
+- Документированием причины в commit message
+- Созданием задачи на устранение технического долга
+- Уведомлением команды в течение 24 часов
+
+---
+
+*Эта конституция является живым документом и должна эволюционировать вместе с проектом.*

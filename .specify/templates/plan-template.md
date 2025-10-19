@@ -1,105 +1,126 @@
-# Implementation Plan: [FEATURE]
+# План разработки: [FEATURE_NAME]
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**Дата создания:** [DATE]  
+**Автор:** [AUTHOR]  
+**Статус:** [Draft | In Progress | Review | Approved]
 
-**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+## Обзор
 
-## Summary
+[Краткое описание планируемой функциональности или изменения]
 
-[Extract from feature spec: primary requirement + technical approach from research]
+## Цели
 
-## Technical Context
+- [Бизнес-цель 1]
+- [Бизнес-цель 2]
+- [Техническая цель 1]
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
+## Контекст
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+[Предыстория, текущая ситуация, проблемы, которые решает план]
 
-## Constitution Check
+## Предлагаемое решение
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+### Архитектура
 
-[Gates determined based on constitution file]
+[Описание архитектурных решений, компонентов, взаимодействий]
 
-## Project Structure
+### Технический стек
 
-### Documentation (this feature)
+- **Frontend:** [Технологии]
+- **Backend:** [Технологии]
+- **Библиотеки:** [Новые зависимости]
 
-```
-specs/[###-feature]/
-├── plan.md              # This file (/speckit.plan command output)
-├── research.md          # Phase 0 output (/speckit.plan command)
-├── data-model.md        # Phase 1 output (/speckit.plan command)
-├── quickstart.md        # Phase 1 output (/speckit.plan command)
-├── contracts/           # Phase 1 output (/speckit.plan command)
-└── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
-```
+### Изменения в кодовой базе
 
-### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
+1. [Модуль/Файл 1]: [Описание изменений]
+2. [Модуль/Файл 2]: [Описание изменений]
 
-```
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
+## Проверка соответствия конституции
 
-tests/
-├── contract/
-├── integration/
-└── unit/
+### ✅ Принцип 1: Качество кода и поддерживаемость
 
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
+- [ ] Код следует rustfmt/ESLint стандартам
+- [ ] Публичные API документированы
+- [ ] Проведен code review
+- [ ] Соблюдена модульная архитектура
+- [ ] Сложность функций в допустимых пределах
 
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
+### ✅ Принцип 2: Стандарты тестирования
 
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
+- [ ] Unit-тесты покрывают минимум 70% критической логики
+- [ ] Созданы интеграционные тесты для Tauri команд
+- [ ] E2E-тесты для новых пользовательских сценариев
+- [ ] Все тесты выполняются < 1s (integration)
 
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
-```
+### ✅ Принцип 3: Согласованность UX
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+- [ ] Используются компоненты из существующей дизайн-системы
+- [ ] Время отклика UI < 100ms
+- [ ] Индикаторы загрузки для операций > 200ms
+- [ ] Graceful обработка ошибок
+- [ ] Keyboard shortcuts задокументированы
+- [ ] Протестировано на разных разрешениях
 
-## Complexity Tracking
+### ✅ Принцип 4: Производительность
 
-*Fill ONLY if Constitution Check has violations that must be justified*
+- [ ] Выполнены performance benchmarks
+- [ ] Новый код не увеличивает время запуска
+- [ ] Измерено влияние на потребление памяти
+- [ ] Применена виртуализация для списков (если применимо)
+- [ ] Использован lazy loading для медиа
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+## Альтернативные варианты
 
+### Вариант 1: [Название]
+
+**Плюсы:**
+- [Плюс 1]
+
+**Минусы:**
+- [Минус 1]
+
+**Решение:** [Почему не выбран]
+
+## Риски и смягчение
+
+| Риск | Вероятность | Влияние | Смягчение |
+|------|-------------|---------|-----------|
+| [Риск 1] | High/Medium/Low | High/Medium/Low | [Стратегия] |
+
+## План реализации
+
+### Фаза 1: [Название]
+
+**Длительность:** [X дней/недель]
+
+- [ ] Задача 1
+- [ ] Задача 2
+
+### Фаза 2: [Название]
+
+**Длительность:** [X дней/недель]
+
+- [ ] Задача 1
+
+## Метрики успеха
+
+- [Метрика 1]: [Целевое значение]
+- [Метрика 2]: [Целевое значение]
+
+## Зависимости
+
+- [Внешняя зависимость 1]
+- [Другая команда/проект]
+
+## Вопросы для обсуждения
+
+1. [Открытый вопрос 1]
+2. [Открытый вопрос 2]
+
+---
+
+**Одобрения:**
+
+- [ ] Tech Lead
+- [ ] Product Owner
+- [ ] Security Review (если требуется)

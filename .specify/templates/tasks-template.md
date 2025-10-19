@@ -1,251 +1,431 @@
----
-description: "Task list template for feature implementation"
----
+# Задачи: [FEATURE_NAME]
 
-# Tasks: [FEATURE NAME]
+**Связанная спецификация:** [Ссылка на spec-template.md]  
+**Спринт/Milestone:** [Номер/Название]  
+**Дата начала:** [DATE]  
+**Целевая дата завершения:** [DATE]
 
-**Input**: Design documents from `/specs/[###-feature-name]/`
-**Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
+## Легенда категорий задач
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
+Задачи категоризированы согласно принципам конституции:
 
-**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
+- 🏗️ **Architecture** - Архитектурные решения и дизайн
+- 💻 **Development** - Разработка функциональности
+- 🧪 **Testing** - Тестирование (Принцип 2)
+- 📈 **Performance** - Оптимизация производительности (Принцип 4)
+- 🎨 **UX/UI** - Пользовательский интерфейс (Принцип 3)
+- 📚 **Documentation** - Документация (Принцип 1)
+- 🐛 **Bugfix** - Исправление ошибок
+- 🔒 **Security** - Безопасность
+- ♿ **Accessibility** - Доступность
 
-## Format: `[ID] [P?] [Story] Description`
-- **[P]**: Can run in parallel (different files, no dependencies)
-- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
-- Include exact file paths in descriptions
+## Приоритеты
 
-## Path Conventions
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
-
-<!-- 
-  ============================================================================
-  IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-  
-  The /speckit.tasks command MUST replace these with actual tasks based on:
-  - User stories from spec.md (with their priorities P1, P2, P3...)
-  - Feature requirements from plan.md
-  - Entities from data-model.md
-  - Endpoints from contracts/
-  
-  Tasks MUST be organized by user story so each story can be:
-  - Implemented independently
-  - Tested independently
-  - Delivered as an MVP increment
-  
-  DO NOT keep these sample tasks in the generated tasks.md file.
-  ============================================================================
--->
-
-## Phase 1: Setup (Shared Infrastructure)
-
-**Purpose**: Project initialization and basic structure
-
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+- **P0 (Critical):** Блокирует релиз, должно быть исправлено немедленно
+- **P1 (High):** Важная функциональность, должна быть в релизе
+- **P2 (Medium):** Желательно в релизе, может быть отложено
+- **P3 (Low):** Nice-to-have, backlog
 
 ---
 
-## Phase 2: Foundational (Blocking Prerequisites)
+## Бэклог задач
 
-**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
+### 🏗️ Архитектура
 
-**⚠️ CRITICAL**: No user story work can begin until this phase is complete
+#### TASK-001: [Название архитектурной задачи]
 
-Examples of foundational tasks (adjust based on your project):
+**Приоритет:** P1  
+**Оценка:** [X часов/дней]  
+**Исполнитель:** [Имя]  
+**Статус:** 🔲 To Do | 🔄 In Progress | ✅ Done | ❌ Blocked
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+**Описание:**  
+[Подробное описание задачи]
 
-**Checkpoint**: Foundation ready - user story implementation can now begin in parallel
+**Принципы конституции:**
+- Принцип 1: [Как задача обеспечивает качество кода]
 
----
+**Acceptance Criteria:**
+- [ ] Критерий 1
+- [ ] Критерий 2
 
-## Phase 3: User Story 1 - [Title] (Priority: P1) 🎯 MVP
+**Технические детали:**
+- Файлы: `src-tauri/src/[module].rs`
+- Зависимости: [Другие задачи]
 
-**Goal**: [Brief description of what this story delivers]
-
-**Independent Test**: [How to verify this story works on its own]
-
-### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
-
-**NOTE: Write these tests FIRST, ensure they FAIL before implementation**
-
-- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
-
-### Implementation for User Story 1
-
-- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
-- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
-- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
-- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T016 [US1] Add validation and error handling
-- [ ] T017 [US1] Add logging for user story 1 operations
-
-**Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
+**Definition of Done:**
+- [ ] Код написан согласно rustfmt
+- [ ] Code review пройден
+- [ ] Документация обновлена
 
 ---
 
-## Phase 4: User Story 2 - [Title] (Priority: P2)
+### 💻 Разработка
 
-**Goal**: [Brief description of what this story delivers]
+#### TASK-002: [Rust Backend - Tauri Command]
 
-**Independent Test**: [How to verify this story works on its own]
+**Приоритет:** P1  
+**Оценка:** 8 часов  
+**Статус:** 🔲 To Do
 
-### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
+**Описание:**  
+Реализовать Tauri command для [функциональность]
 
-- [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T019 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
+**Acceptance Criteria:**
+- [ ] Command принимает типизированные параметры
+- [ ] Обработка ошибок с Result<T, Error>
+- [ ] Async/await для неблокирующих операций
+- [ ] Логирование критических операций
 
-### Implementation for User Story 2
+**Код (скелет):**
+```rust
+#[tauri::command]
+async fn feature_command(
+    state: tauri::State<'_, AppState>,
+    param: FeatureParam
+) -> Result<FeatureResponse, String> {
+    // TODO: Implementation
+}
+```
 
-- [ ] T020 [P] [US2] Create [Entity] model in src/models/[entity].py
-- [ ] T021 [US2] Implement [Service] in src/services/[service].py
-- [ ] T022 [US2] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T023 [US2] Integrate with User Story 1 components (if needed)
-
-**Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
-
----
-
-## Phase 5: User Story 3 - [Title] (Priority: P3)
-
-**Goal**: [Brief description of what this story delivers]
-
-**Independent Test**: [How to verify this story works on its own]
-
-### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
-
-- [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
-
-### Implementation for User Story 3
-
-- [ ] T026 [P] [US3] Create [Entity] model in src/models/[entity].py
-- [ ] T027 [US3] Implement [Service] in src/services/[service].py
-- [ ] T028 [US3] Implement [endpoint/feature] in src/[location]/[file].py
-
-**Checkpoint**: All user stories should now be independently functional
+**Definition of Done:**
+- [ ] Clippy warnings отсутствуют
+- [ ] Unit-тесты покрывают happy path и error cases
+- [ ] Документация (doc comments) написана
+- [ ] Интеграционный тест создан
 
 ---
 
-[Add more user story phases as needed, following the same pattern]
+#### TASK-003: [Frontend Component]
+
+**Приоритет:** P1  
+**Оценка:** 6 часов  
+**Статус:** 🔲 To Do
+
+**Описание:**  
+Создать React компонент для [UI элемент]
+
+**Acceptance Criteria:**
+- [ ] Компонент типизирован (TypeScript)
+- [ ] Использует существующую дизайн-систему
+- [ ] Responsive дизайн
+- [ ] Keyboard navigation поддерживается
+
+**UX Requirements (Принцип 3):**
+- [ ] Время отклика на действие < 100ms
+- [ ] Loading state для async операций
+- [ ] Error handling с понятными сообщениями
+
+**Definition of Done:**
+- [ ] ESLint/Prettier без ошибок
+- [ ] Component тесты (React Testing Library)
+- [ ] Storybook story создана (опционально)
+- [ ] Props задокументированы
 
 ---
 
-## Phase N: Polish & Cross-Cutting Concerns
+### 🧪 Тестирование
 
-**Purpose**: Improvements that affect multiple user stories
+#### TASK-004: [Unit Tests для модуля X]
 
-- [ ] TXXX [P] Documentation updates in docs/
-- [ ] TXXX Code cleanup and refactoring
-- [ ] TXXX Performance optimization across all stories
-- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
-- [ ] TXXX Security hardening
-- [ ] TXXX Run quickstart.md validation
+**Приоритет:** P1  
+**Оценка:** 4 часа  
+**Статус:** 🔲 To Do
 
----
+**Описание:**  
+Написать unit-тесты для достижения 70% coverage критической логики (Принцип 2)
 
-## Dependencies & Execution Order
+**Acceptance Criteria:**
+- [ ] Тесты покрывают happy path
+- [ ] Тесты покрывают edge cases
+- [ ] Тесты покрывают error handling
+- [ ] Каждый тест выполняется < 100ms
 
-### Phase Dependencies
+**Структура:**
+```rust
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-- **Setup (Phase 1)**: No dependencies - can start immediately
-- **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
-- **User Stories (Phase 3+)**: All depend on Foundational phase completion
-  - User stories can then proceed in parallel (if staffed)
-  - Or sequentially in priority order (P1 → P2 → P3)
-- **Polish (Final Phase)**: Depends on all desired user stories being complete
+    #[test]
+    fn test_case_1() { }
+    
+    #[test]
+    fn test_error_handling() { }
+}
+```
 
-### User Story Dependencies
-
-- **User Story 1 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories
-- **User Story 2 (P2)**: Can start after Foundational (Phase 2) - May integrate with US1 but should be independently testable
-- **User Story 3 (P3)**: Can start after Foundational (Phase 2) - May integrate with US1/US2 but should be independently testable
-
-### Within Each User Story
-
-- Tests (if included) MUST be written and FAIL before implementation
-- Models before services
-- Services before endpoints
-- Core implementation before integration
-- Story complete before moving to next priority
-
-### Parallel Opportunities
-
-- All Setup tasks marked [P] can run in parallel
-- All Foundational tasks marked [P] can run in parallel (within Phase 2)
-- Once Foundational phase completes, all user stories can start in parallel (if team capacity allows)
-- All tests for a user story marked [P] can run in parallel
-- Models within a story marked [P] can run in parallel
-- Different user stories can be worked on in parallel by different team members
+**Definition of Done:**
+- [ ] Coverage report показывает >= 70%
+- [ ] Все тесты зеленые в CI/CD
+- [ ] Моки использованы для внешних зависимостей
 
 ---
 
-## Parallel Example: User Story 1
+#### TASK-005: [E2E тесты для user flow]
 
-```bash
-# Launch all tests for User Story 1 together (if tests requested):
-Task: "Contract test for [endpoint] in tests/contract/test_[name].py"
-Task: "Integration test for [user journey] in tests/integration/test_[name].py"
+**Приоритет:** P2  
+**Оценка:** 8 часов  
+**Статус:** 🔲 To Do
 
-# Launch all models for User Story 1 together:
-Task: "Create [Entity1] model in src/models/[entity1].py"
-Task: "Create [Entity2] model in src/models/[entity2].py"
+**Описание:**  
+Создать E2E тесты для критического сценария [сценарий]
+
+**Сценарий:**
+1. Шаг 1: [действие]
+2. Шаг 2: [действие]
+3. Ожидаемый результат: [результат]
+
+**Инструменты:**
+- Playwright / Tauri webdriver
+
+**Definition of Done:**
+- [ ] Тест проходит на всех платформах (Windows/Linux/macOS)
+- [ ] Тест добавлен в CI/CD pipeline
+- [ ] Скриншоты/видео при падении теста
+
+---
+
+### 📈 Производительность
+
+#### TASK-006: [Оптимизация производительности]
+
+**Приоритет:** P1  
+**Оценка:** 12 часов  
+**Статус:** 🔲 To Do
+
+**Описание:**  
+Оптимизировать [компонент/функцию] для соответствия требованиям Принципа 4
+
+**Текущие метрики:**
+- Время выполнения: [X ms]
+- Потребление памяти: [Y MB]
+
+**Целевые метрики (Принцип 4):**
+- Время выполнения: < [Z ms]
+- Потребление памяти: < [W MB]
+
+**Стратегия оптимизации:**
+- [ ] Профилирование с cargo flamegraph
+- [ ] Идентификация bottlenecks
+- [ ] Применение виртуализации (если список)
+- [ ] Lazy loading медиа
+- [ ] Кэширование результатов
+
+**Acceptance Criteria:**
+- [ ] Benchmark тесты показывают улучшение
+- [ ] Метрики соответствуют целевым
+- [ ] Регрессии не обнаружены
+
+**Definition of Done:**
+- [ ] Benchmark добавлен в CI/CD
+- [ ] Документация performance characteristics обновлена
+- [ ] Memory profiling проведен
+
+---
+
+### 🎨 UX/UI
+
+#### TASK-007: [UI согласованность и анимации]
+
+**Приоритет:** P2  
+**Оценка:** 6 часов  
+**Статус:** 🔲 To Do
+
+**Описание:**  
+Обеспечить плавные transitions и animations для [компонент] (Принцип 3)
+
+**Acceptance Criteria:**
+- [ ] Анимации работают при 60 FPS
+- [ ] Нет jank или frame drops
+- [ ] Transition duration: 150-300ms
+- [ ] Используется CSS transforms/opacity (GPU acceleration)
+
+**UX Guidelines:**
+- Motion easing: ease-in-out
+- Respect prefers-reduced-motion
+
+**Definition of Done:**
+- [ ] Performance profiling в Chrome DevTools
+- [ ] Тестирование на слабых устройствах
+- [ ] Keyboard navigation сохранена
+
+---
+
+#### TASK-008: [Обработка ошибок и feedback]
+
+**Приоритет:** P1  
+**Оценка:** 4 часа  
+**Статус:** 🔲 To Do
+
+**Описание:**  
+Реализовать graceful error handling с пользовательскими сообщениями (Принцип 3)
+
+**Acceptance Criteria:**
+- [ ] Все catch блоки обрабатывают ошибки
+- [ ] Сообщения локализованы (EN/RU)
+- [ ] Показываются actionable suggestions
+- [ ] Ошибки логируются для debugging
+
+**Примеры сообщений:**
+- API error: "Не удалось загрузить сообщения. Проверьте подключение к интернету."
+- Validation error: "Сообщение слишком длинное. Максимум 4096 символов."
+
+**Definition of Done:**
+- [ ] Error boundary компоненты созданы
+- [ ] Тосты/уведомления styled
+- [ ] Error logging настроен
+
+---
+
+### 📚 Документация
+
+#### TASK-009: [API документация]
+
+**Приоритет:** P2  
+**Оценка:** 3 часа  
+**Статус:** 🔲 To Do
+
+**Описание:**  
+Документировать публичные API (Принцип 1: качество кода)
+
+**Acceptance Criteria:**
+- [ ] Все публичные функции имеют doc comments
+- [ ] Примеры использования включены
+- [ ] Параметры и возвращаемые значения описаны
+- [ ] Edge cases и errors задокументированы
+
+**Формат (Rust):**
+```rust
+/// Краткое описание функции.
+///
+/// # Arguments
+/// * `param` - Описание параметра
+///
+/// # Returns
+/// Описание возвращаемого значения
+///
+/// # Errors
+/// Возвращает ошибку если...
+///
+/// # Examples
+/// ```
+/// let result = function(param);
+/// ```
+pub fn function(param: Type) -> Result<T, E> { }
+```
+
+**Definition of Done:**
+- [ ] `cargo doc --open` генерирует полную документацию
+- [ ] Примеры компилируются (doc tests)
+- [ ] JSDoc для TypeScript функций
+
+---
+
+#### TASK-010: [README и User Guide обновление]
+
+**Приоритет:** P2  
+**Оценка:** 2 часа  
+**Статус:** 🔲 To Do
+
+**Описание:**  
+Обновить пользовательскую документацию с новой функциональностью
+
+**Acceptance Criteria:**
+- [ ] README.md включает описание новой фичи
+- [ ] Screenshots обновлены
+- [ ] Keyboard shortcuts задокументированы
+
+---
+
+### 🐛 Bugfix
+
+#### TASK-011: [Исправление известной проблемы]
+
+**Приоритет:** P0  
+**Оценка:** 4 часа  
+**Статус:** 🔲 To Do
+
+**Описание:**  
+Исправить баг: [описание из Known problems в README]
+
+**Steps to reproduce:**
+1. [Шаг 1]
+2. [Шаг 2]
+
+**Expected:** [Ожидаемое поведение]  
+**Actual:** [Актуальное поведение]
+
+**Root cause:**  
+[Анализ причины после investigation]
+
+**Fix approach:**  
+[Предлагаемое решение]
+
+**Definition of Done:**
+- [ ] Баг исправлен и не воспроизводится
+- [ ] Регрессионный тест добавлен (Принцип 2)
+- [ ] Связанный код отрефакторен (если нужно)
+- [ ] Known problems в README обновлен
+
+---
+
+## Dependency Graph
+
+```
+TASK-001 (Архитектура)
+    ↓
+TASK-002 (Backend) → TASK-004 (Unit Tests)
+    ↓
+TASK-003 (Frontend) → TASK-008 (Error Handling)
+    ↓
+TASK-005 (E2E Tests)
+    ↓
+TASK-006 (Performance) → TASK-007 (Animations)
+    ↓
+TASK-009 (Documentation)
 ```
 
 ---
 
-## Implementation Strategy
+## Progress Tracking
 
-### MVP First (User Story 1 Only)
+**Общий прогресс:** [X/Y задач выполнено] ([Z%])
 
-1. Complete Phase 1: Setup
-2. Complete Phase 2: Foundational (CRITICAL - blocks all stories)
-3. Complete Phase 3: User Story 1
-4. **STOP and VALIDATE**: Test User Story 1 independently
-5. Deploy/demo if ready
+### Статистика по категориям
 
-### Incremental Delivery
+| Категория | To Do | In Progress | Done | Total |
+|-----------|-------|-------------|------|-------|
+| 🏗️ Architecture | 1 | 0 | 0 | 1 |
+| 💻 Development | 2 | 0 | 0 | 2 |
+| 🧪 Testing | 2 | 0 | 0 | 2 |
+| 📈 Performance | 1 | 0 | 0 | 1 |
+| 🎨 UX/UI | 2 | 0 | 0 | 2 |
+| 📚 Documentation | 2 | 0 | 0 | 2 |
+| 🐛 Bugfix | 1 | 0 | 0 | 1 |
+| **TOTAL** | **11** | **0** | **0** | **11** |
 
-1. Complete Setup + Foundational → Foundation ready
-2. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
-3. Add User Story 2 → Test independently → Deploy/Demo
-4. Add User Story 3 → Test independently → Deploy/Demo
-5. Each story adds value without breaking previous stories
+### Проверка соответствия конституции
 
-### Parallel Team Strategy
-
-With multiple developers:
-
-1. Team completes Setup + Foundational together
-2. Once Foundational is done:
-   - Developer A: User Story 1
-   - Developer B: User Story 2
-   - Developer C: User Story 3
-3. Stories complete and integrate independently
+- [x] Принцип 1 (Качество кода): Задачи TASK-001, TASK-009 обеспечивают
+- [x] Принцип 2 (Тестирование): Задачи TASK-004, TASK-005 покрывают
+- [x] Принцип 3 (UX): Задачи TASK-007, TASK-008 реализуют
+- [x] Принцип 4 (Производительность): Задача TASK-006 адресует
 
 ---
 
-## Notes
+## Sprint Notes
 
-- [P] tasks = different files, no dependencies
-- [Story] label maps task to specific user story for traceability
-- Each user story should be independently completable and testable
-- Verify tests fail before implementing
-- Commit after each task or logical group
-- Stop at any checkpoint to validate story independently
-- Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
+**Blockers:**
+- [Описание блокеров]
 
+**Risks:**
+- [Риски для выполнения в срок]
 
+**Decisions made:**
+- [Важные решения команды]
 
+---
+
+**Последнее обновление:** [DATE]  
+**Обновлено:** [Имя]
