@@ -4,7 +4,7 @@
 
 ## Обзор
 
-Конституция проекта Omegram определяет четыре принципа, которые могут быть частично или полностью автоматизированы через CI/CD:
+Конституция проекта Workgram определяет четыре принципа, которые могут быть частично или полностью автоматизированы через CI/CD:
 
 - ✅ **Принцип 1 (Качество кода):** Автоматизируется через линтеры и форматтеры
 - ✅ **Принцип 2 (Тестирование):** Автоматизируется через test runners и coverage tools
@@ -316,7 +316,7 @@ jobs:
           
           # Measure cold start time (должно быть < 3s)
           start_time=$(date +%s%N)
-          timeout 5s ./target/release/omegram --version || true
+          timeout 5s ./target/release/workgram --version || true
           end_time=$(date +%s%N)
           duration=$(( (end_time - start_time) / 1000000 ))
           
@@ -509,9 +509,9 @@ criterion_main!(benches);
 Добавьте в `README.md`:
 
 ```markdown
-[![CI](https://github.com/username/omegram/workflows/CI%20-%20Constitution%20Compliance/badge.svg)](https://github.com/username/omegram/actions)
-[![codecov](https://codecov.io/gh/username/omegram/branch/main/graph/badge.svg)](https://codecov.io/gh/username/omegram)
-[![Performance](https://github.com/username/omegram/workflows/Performance%20Benchmarks/badge.svg)](https://github.com/username/omegram/actions)
+[![CI](https://github.com/username/workgram/workflows/CI%20-%20Constitution%20Compliance/badge.svg)](https://github.com/username/workgram/actions)
+[![codecov](https://codecov.io/gh/username/workgram/branch/main/graph/badge.svg)](https://codecov.io/gh/username/workgram)
+[![Performance](https://github.com/username/workgram/workflows/Performance%20Benchmarks/badge.svg)](https://github.com/username/workgram/actions)
 ```
 
 ## Чек-лист внедрения

@@ -1,11 +1,11 @@
-<h1 align="center">Ω Omegram</h1>
+<h1 align="center">Ω Workgram</h1>
 
 <p align="center">
 <img width="128px" height="128px" src="logo.png"/>
 </p>
 
 <p align="center">
-Omegram is a telegram GUI client written in rust
+Workgram is a telegram GUI client written in rust
 </p>
 
 

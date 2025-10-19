@@ -6,7 +6,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "omegram",
+    "productName": "workgram",
     "version": "0.0.0"
   },
   "tauri": {
@@ -19,7 +19,7 @@
     },
     "windows": [
       {
-        "title": "omegram",
+        "title": "workgram",
         "width": 800,
         "height": 600
       }

@@ -1,10 +1,16 @@
 use std::env;
 
-use grammers_client::{ types::{ Downloadable, LoginToken }, Client, Config, InitParams };
+use grammers_client::{
+    types::{Downloadable, LoginToken},
+    Client, Config, InitParams,
+};
 use grammers_session::Session;
 use grammers_tl_types as tl;
 
-use crate::{ constants::DB, models::{ dialog::Dialog, message::Message } };
+use crate::{
+    constants::DB,
+    models::{dialog::Dialog, message::Message},
+};
 
 pub struct TelegramHelper {
     pub client: Client,
@@ -18,7 +24,9 @@ impl TelegramHelper {
             api_hash: api_hash,
             api_id: api_id,
             params: InitParams::default(),
-        }).await.unwrap();
+        })
+        .await
+        .unwrap();
 
         Self {
             client: client,
@@ -69,18 +77,23 @@ impl TelegramHelper {
                 let api_hash = env::var("API_HASH").unwrap().to_string();
 
                 self.client = Client::connect(Config {
-                    session: Session::load_file_or_create("omegram.session").unwrap(),
+                    session: Session::load_file_or_create("workgram.session").unwrap(),
                     api_id,
                     api_hash: api_hash.clone(),
                     params: Default::default(),
-                }).await.unwrap();
+                })
+                .await
+                .unwrap();
                 self.client.request_login_code(phone).await.unwrap()
             }
         });
     }
 
     pub async fn sign_in(&self, code: &str) -> usize {
-        self.client.sign_in(self.token.as_ref().unwrap(), code).await.unwrap();
+        self.client
+            .sign_in(self.token.as_ref().unwrap(), code)
+            .await
+            .unwrap();
 
         match self.client.session().save_to_file("notelegram.session") {
             Ok(_) => {}
@@ -112,9 +125,11 @@ impl TelegramHelper {
                 if let Some(photo) = &chat.photo_downloadable(false) {
                     let bytes = self.get_photo(&photo).await;
 
-                    result.push(
-                        Dialog::new(chat.id().to_string(), chat.name().to_string(), bytes.clone())
-                    );
+                    result.push(Dialog::new(
+                        chat.id().to_string(),
+                        chat.name().to_string(),
+                        bytes.clone(),
+                    ));
                 }
             }
 
@@ -147,27 +162,24 @@ impl TelegramHelper {
                         if let Some(sender) = message.sender() {
                             if let Some(photo) = sender.photo_downloadable(false) {
                                 let bytes;
-                                if
-                                    let Some(b) = db
-                                        .as_ref()
-                                        .unwrap()
-                                        .get_photo(&message.sender().unwrap().id().to_string())
+                                if let Some(b) = db
+                                    .as_ref()
+                                    .unwrap()
+                                    .get_photo(&message.sender().unwrap().id().to_string())
                                 {
                                     bytes = b;
                                 } else {
                                     bytes = self.get_photo(&photo).await;
-                                    db.as_ref()
-                                        .unwrap()
-                                        .set_photo(
-                                            &message.sender().unwrap().id().to_string(),
-                                            bytes.clone()
-                                        );
+                                    db.as_ref().unwrap().set_photo(
+                                        &message.sender().unwrap().id().to_string(),
+                                        bytes.clone(),
+                                    );
                                 }
 
                                 let msg = Message::new(
                                     message.id().to_string(),
                                     message.text().to_string(),
-                                    bytes.clone()
+                                    bytes.clone(),
                                 );
 
                                 result.push(msg);
@@ -189,7 +201,12 @@ impl TelegramHelper {
 
         while let Some(dialog) = chats.next().await.unwrap() {
             if dialog.chat().id().to_string() == id {
-                if let Some(result) = self.client.send_message(dialog.chat(), message.clone()).await.ok() {
+                if let Some(result) = self
+                    .client
+                    .send_message(dialog.chat(), message.clone())
+                    .await
+                    .ok()
+                {
                     if let Some(sender) = result.sender() {
                         if let Some(photo) = sender.photo_downloadable(false) {
                             let bytes = self.get_photo(&photo).await;
@@ -197,7 +214,7 @@ impl TelegramHelper {
                             let msg = Message::new(
                                 result.id().to_string(),
                                 result.text().to_string(),
-                                bytes.clone()
+                                bytes.clone(),
                             );
 
                             return Ok(msg);
